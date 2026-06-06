@@ -141,7 +141,7 @@
       let countEl = document.getElementById('cart-count');
       if (countEl && cart.length > 0) countEl.textContent = `(${cart.length})`;
     });
-  </script>async function stripeCheckoutNow() {
+    async function stripeCheckoutNow() {
   if (!selectedSize) return;
   const name  = document.getElementById('product-name').innerText;
   const price = parseInt(document.querySelector('.product-info p').innerText.replace('$', ''));
@@ -154,6 +154,8 @@
   const { url } = await res.json();
   window.location.href = url;
 }
+
+  </script>
 
 </body>
 </html>
