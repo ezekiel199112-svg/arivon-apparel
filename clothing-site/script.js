@@ -12,8 +12,9 @@ function selectSize(size, btn) {
 
   btn.classList.add("active");
 
-  document.getElementById("buyBtn").disabled = false;
-  document.getElementById("addCartBtn").disabled = false;
+document.getElementById("buyBtn").disabled = false;
+document.getElementById("addCartBtn").disabled = false;
+document.getElementById("buyNowStripe").disabled = false;
 }
 
 // =========================
