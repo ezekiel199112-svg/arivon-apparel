@@ -495,3 +495,13 @@ a:active  { color: white; }
     height: 60px;
   }
 }
+#buyNowStripe, #addCartBtn {
+  opacity: 0.4;
+  transition: opacity 0.2s, background 0.2s, color 0.2s;
+}
+
+#buyNowStripe:not([disabled]), #addCartBtn:not([disabled]) {
+  opacity: 1;
+  background: white;
+  color: black;
+}
