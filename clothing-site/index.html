@@ -9,104 +9,109 @@
 </head>
 <body>
 
-  <!-- NAVBAR -->
   <header class="navbar">
     <h2 class="logo">ARIVON APPAREL</h2>
-<nav>
-  <a href="#">Home</a>
-  <a href="#shop">Shop</a>
-  <a href="about.html">About</a>
-  <a href="#" onclick="openCart(); return false;">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-    <span id="cart-count" class="cart-count"></span>
-  </a>
-</nav>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="about.html">About</a>
+      <a href="#" onclick="openCart(); return false;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span id="cart-count" class="cart-count"></span>
+      </a>
+    </nav>
   </header>
 
-  <!-- HERO SECTION -->
   <section class="hero">
-    <h1>Natural Selection Drop</h1>
-    <p>Streetwear / Y2K / Grunge inspired clothing</p>
-    <button>Shop Now</button>
+    <p class="hero-eyebrow">NATURAL SELECTION DROP — 2026</p>
+    <h1>ARIVON<br>APPAREL</h1>
+    <p>Streetwear / Y2K / Grunge</p>
+    <button onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">SHOP NOW</button>
   </section>
 
-  <!-- PRODUCT GRID -->
   <section id="shop" class="products">
-    <h2>Featured Items</h2>
+    <h2>FEATURED ITEMS</h2>
     <div class="grid">
 
       <a href="hoodie.html">
         <div class="card">
-          <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
-          <h3>Washed Hoodie</h3>
-          <p>$55</p>
-          <p>Sizes: S • M • L • XL</p>
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>WASHED HOODIE</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
         </div>
       </a>
 
-<a href="affliction-shirt.html">
-  <div class="card">
-          <img src="images/Screenshot 2026-06-06 153459.png" class="product-img">
-    <h3>Affliction Shirt</h3>
-    <p>$55</p>
-    <p>Sizes: S • M • L • XL</p>
-  </div>
-</a>
-<a href="distressed-jeans.html">
-  <div class="card">
-          <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
-    <h3>Distressed Jeans</h3>
-    <p>$55</p>
-    <p>Sizes: S • M • L • XL</p>
-  </div>
-</a>
+      <a href="affliction-shirt.html">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 153459.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>AFFLICTION SHIRT</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
+        </div>
+      </a>
 
-<a href="long-jorts.html">
-  <div class="card">
-          <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
-    <h3>Long Jorts</h3>
-    <p>$55</p>
-    <p>Sizes: S • M • L • XL</p>
-  </div>
-</a>
+      <a href="distressed-jeans.html">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>DISTRESSED JEANS</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="long-jorts.html">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>LONG JORTS</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
+        </div>
+      </a>
 
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <p>© 2026 Arivon Apparel</p>
+    <p>© 2026 ARIVON APPAREL</p>
   </footer>
 
-  <!-- CART OVERLAY (darkens page) -->
   <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
 
-  <!-- SLIDE-IN CART PANEL -->
   <div id="cart-panel" class="cart-panel">
-
     <div class="cart-panel-header">
-      <span id="cart-panel-title">YOUR CART</span>
+      <span>YOUR CART</span>
       <div class="cart-header-actions">
-        <button class="cart-icon-btn" onclick="toggleFullscreen()" title="Fullscreen cart" id="fullscreen-btn">⛶</button>
-        <button class="cart-icon-btn" onclick="closeCart()" title="Close">✕</button>
+        <button class="cart-icon-btn" onclick="toggleFullscreen()" id="fullscreen-btn">⛶</button>
+        <button class="cart-icon-btn" onclick="closeCart()">✕</button>
       </div>
     </div>
-
-    <div id="cart-panel-items" class="cart-panel-items">
-      <!-- filled by JS -->
-    </div>
-
+    <div id="cart-panel-items" class="cart-panel-items"></div>
     <div class="cart-panel-footer">
       <div class="cart-panel-total" id="cart-panel-total">Total: $0</div>
-<button class="cart-checkout-btn" onclick="stripeCheckout()">CHECKOUT →</button>
-      <a href="cart.html" class="cart-view-full">View full cart page</a>
+      <button class="cart-checkout-btn" onclick="stripeCheckout()">CHECKOUT →</button>
+      <a href="cart.html" class="cart-view-full">View full cart</a>
     </div>
-
   </div>
 
   <script src="script.js"></script>
   <script>
-    // ── Open / close panel ──────────────────────────────────────
     function openCart() {
       renderCartPanel();
       document.getElementById('cart-panel').classList.add('open');
@@ -119,7 +124,6 @@
       document.getElementById('fullscreen-btn').textContent = '⛶';
     }
 
-    // ── Fullscreen toggle ───────────────────────────────────────
     function toggleFullscreen() {
       const panel = document.getElementById('cart-panel');
       const btn   = document.getElementById('fullscreen-btn');
@@ -127,33 +131,28 @@
       btn.textContent = isFs ? '⊡' : '⛶';
     }
 
-    // ── Render cart panel ───────────────────────────────────────
     function renderCartPanel() {
-      let cart  = JSON.parse(localStorage.getItem('cart')) || [];
-      let items = document.getElementById('cart-panel-items');
+      let cart    = JSON.parse(localStorage.getItem('cart')) || [];
+      let items   = document.getElementById('cart-panel-items');
       let totalEl = document.getElementById('cart-panel-total');
       let countEl = document.getElementById('cart-count');
-
       items.innerHTML = '';
       let total = 0;
-
       if (cart.length === 0) {
         items.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
         totalEl.textContent = 'Total: $0';
         if (countEl) countEl.textContent = '';
         return;
       }
-
       cart.forEach(item => {
         if (item.selected) total += item.price;
-
         items.innerHTML += `
           <div class="cart-item">
             <div class="select-btn ${item.selected ? 'selected' : ''}"
                  onclick="toggleSelect(${item.id}); renderCartPanel();"></div>
             <div class="item-info">
               <p class="item-name"><strong>${item.name}</strong></p>
-              <p style="margin:0;font-size:12px;color:#aaa;">Size ${item.size}</p>
+              <p style="margin:0;font-size:11px;color:#555;letter-spacing:1px;">Size ${item.size}</p>
             </div>
             <div class="right-side">
               <span class="price">$${item.price}</span>
@@ -161,33 +160,26 @@
             </div>
           </div>`;
       });
-
       totalEl.textContent = 'Total: $' + total;
       if (countEl) countEl.textContent = cart.length > 0 ? `(${cart.length})` : '';
     }
 
-    // Update cart count badge on page load
     window.addEventListener('DOMContentLoaded', () => {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart    = JSON.parse(localStorage.getItem('cart')) || [];
       let countEl = document.getElementById('cart-count');
       if (countEl && cart.length > 0) countEl.textContent = `(${cart.length})`;
     });
 
- // Auto-open panel after addToCart (override showCartPopup)
-    function showCartPopup() {
-      openCart();
-    }
+    function showCartPopup() { openCart(); }
 
     async function stripeCheckout() {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart     = JSON.parse(localStorage.getItem('cart')) || [];
       let selected = cart.filter(item => item.selected);
       if (selected.length === 0) { alert('No items selected'); return; }
-
       const res = await fetch('/.netlify/functions/create-checkout', {
         method: 'POST',
         body: JSON.stringify({ items: selected })
       });
-
       const { url } = await res.json();
       window.location.href = url;
     }
