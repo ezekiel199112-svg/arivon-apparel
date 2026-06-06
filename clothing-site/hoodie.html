@@ -43,7 +43,7 @@
       </div>
 
       <button id="buyBtn" onclick="buyNow()" disabled>Buy Now</button>
-      <button id="addCartBtn" onclick="addToCart()" disabled>Add to Cart</button>
+<button id="buyNowStripe" onclick="stripeCheckoutNow()" disabled>Buy Now</button>
     </div>
 
   </section>
@@ -141,7 +141,19 @@
       let countEl = document.getElementById('cart-count');
       if (countEl && cart.length > 0) countEl.textContent = `(${cart.length})`;
     });
-  </script>
+  </script>async function stripeCheckoutNow() {
+  if (!selectedSize) return;
+  const name  = document.getElementById('product-name').innerText;
+  const price = parseInt(document.querySelector('.product-info p').innerText.replace('$', ''));
+
+  const res = await fetch('/.netlify/functions/create-checkout', {
+    method: 'POST',
+    body: JSON.stringify({ items: [{ name, price, size: selectedSize }] })
+  });
+
+  const { url } = await res.json();
+  window.location.href = url;
+}
 
 </body>
 </html>
