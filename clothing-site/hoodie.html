@@ -12,8 +12,7 @@
     <h2 class="logo">ARIVON APPAREL</h2>
     <nav>
       <a href="index.html">Back to Shop</a>
-      <a href="about.html">About</a>
-      <a href="#" onclick="openCart(); return false;" style="display:flex;align-items:center;gap:6px;">
+      <a href="#" onclick="openCart(); return false;">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         <span id="cart-count" class="cart-count"></span>
       </a>
@@ -42,8 +41,10 @@
         <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
       </div>
 
-      <button id="buyBtn" onclick="buyNow()" disabled>Buy Now</button>
-<button id="buyNowStripe" onclick="stripeCheckoutNow()" disabled>Buy Now</button>
+      <div style="display:flex; gap:10px; margin-top:10px;">
+        <button id="addCartBtn" onclick="addToCart()" disabled>Add to Cart</button>
+        <button id="buyNowStripe" onclick="stripeCheckoutNow()" disabled>Buy Now</button>
+      </div>
     </div>
 
   </section>
@@ -53,7 +54,6 @@
 
   <!-- SLIDE-IN CART PANEL -->
   <div id="cart-panel" class="cart-panel">
-
     <div class="cart-panel-header">
       <span>YOUR CART</span>
       <div class="cart-header-actions">
@@ -61,15 +61,12 @@
         <button class="cart-icon-btn" onclick="closeCart()">✕</button>
       </div>
     </div>
-
     <div id="cart-panel-items" class="cart-panel-items"></div>
-
     <div class="cart-panel-footer">
       <div class="cart-panel-total" id="cart-panel-total">Total: $0</div>
-      <button class="cart-checkout-btn" onclick="buySelected()">CHECKOUT →</button>
+      <button class="cart-checkout-btn" onclick="stripeCheckout()">CHECKOUT →</button>
       <a href="cart.html" class="cart-view-full">View full cart page</a>
     </div>
-
   </div>
 
   <script src="script.js"></script>
@@ -104,17 +101,14 @@
       let items = document.getElementById('cart-panel-items');
       let totalEl = document.getElementById('cart-panel-total');
       let countEl = document.getElementById('cart-count');
-
       items.innerHTML = '';
       let total = 0;
-
       if (cart.length === 0) {
         items.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
         totalEl.textContent = 'Total: $0';
         if (countEl) countEl.textContent = '';
         return;
       }
-
       cart.forEach(item => {
         if (item.selected) total += item.price;
         items.innerHTML += `
@@ -131,7 +125,6 @@
             </div>
           </div>`;
       });
-
       totalEl.textContent = 'Total: $' + total;
       if (countEl) countEl.textContent = cart.length > 0 ? `(${cart.length})` : '';
     }
@@ -141,20 +134,30 @@
       let countEl = document.getElementById('cart-count');
       if (countEl && cart.length > 0) countEl.textContent = `(${cart.length})`;
     });
+
     async function stripeCheckoutNow() {
-  if (!selectedSize) return;
-  const name  = document.getElementById('product-name').innerText;
-  const price = parseInt(document.querySelector('.product-info p').innerText.replace('$', ''));
+      if (!selectedSize) return;
+      const name  = document.getElementById('product-name').innerText;
+      const price = parseInt(document.querySelector('.product-info p').innerText.replace('$', ''));
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        body: JSON.stringify({ items: [{ name, price, size: selectedSize }] })
+      });
+      const { url } = await res.json();
+      window.location.href = url;
+    }
 
-  const res = await fetch('/.netlify/functions/create-checkout', {
-    method: 'POST',
-    body: JSON.stringify({ items: [{ name, price, size: selectedSize }] })
-  });
-
-  const { url } = await res.json();
-  window.location.href = url;
-}
-
+    async function stripeCheckout() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let selected = cart.filter(item => item.selected);
+      if (selected.length === 0) { alert('No items selected'); return; }
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        body: JSON.stringify({ items: selected })
+      });
+      const { url } = await res.json();
+      window.location.href = url;
+    }
   </script>
 
 </body>
