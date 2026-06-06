@@ -12,14 +12,14 @@ function selectSize(size, btn) {
 
   btn.classList.add("active");
 
-document.getElementById("addCartBtn").disabled = false;
-if (document.getElementById("buyNowStripe")) {
-  document.getElementById("buyNowStripe").disabled = false;
+  document.getElementById("addCartBtn").disabled = false;
+  if (document.getElementById("buyNowStripe")) {
+    document.getElementById("buyNowStripe").disabled = false;
+  }
 }
 
 // =========================
 // ADD TO CART
-// reads name + price from the page dynamically
 // =========================
 function addToCart() {
   if (!selectedSize) return;
@@ -44,18 +44,6 @@ function addToCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
 
   showCartPopup();
-}
-
-// =========================
-// BUY NOW (PRODUCT PAGE)
-// =========================
-function buyNow() {
-  if (!selectedSize) return;
-
-  const nameEl = document.getElementById("product-name");
-  const name   = nameEl ? nameEl.innerText : "Product";
-
-  alert(`Buying ${name} (Size ${selectedSize})`);
 }
 
 // =========================
