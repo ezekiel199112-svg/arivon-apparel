@@ -98,7 +98,7 @@
 
     <div class="cart-panel-footer">
       <div class="cart-panel-total" id="cart-panel-total">Total: $0</div>
-      <button class="cart-checkout-btn" onclick="buySelected()">CHECKOUT →</button>
+<button class="cart-checkout-btn" onclick="stripeCheckout()">CHECKOUT →</button>
       <a href="cart.html" class="cart-view-full">View full cart page</a>
     </div>
 
@@ -173,9 +173,23 @@
       if (countEl && cart.length > 0) countEl.textContent = `(${cart.length})`;
     });
 
-    // Auto-open panel after addToCart (override showCartPopup)
+ // Auto-open panel after addToCart (override showCartPopup)
     function showCartPopup() {
       openCart();
+    }
+
+    async function stripeCheckout() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let selected = cart.filter(item => item.selected);
+      if (selected.length === 0) { alert('No items selected'); return; }
+
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        body: JSON.stringify({ items: selected })
+      });
+
+      const { url } = await res.json();
+      window.location.href = url;
     }
   </script>
 
