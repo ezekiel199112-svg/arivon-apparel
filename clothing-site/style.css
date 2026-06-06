@@ -846,3 +846,138 @@ footer {
   .about-stats { padding: 0 24px; }
   .about-socials { padding: 0 24px 60px; }
 }
+
+/* ============================================
+   HAMBURGER BUTTON
+   ============================================ */
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 1px;
+  background: white;
+  transition: 0.3s;
+}
+
+.hamburger:hover span { background: #aaa; }
+.hamburger:hover { transform: none; }
+
+/* ============================================
+   MENU PANEL
+   ============================================ */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.menu-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+.menu-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 300px;
+  background: #0a0a0a;
+  border-right: 1px solid #1a1a1a;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 40px;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-panel.open {
+  transform: translateX(0);
+}
+
+.menu-close {
+  background: transparent;
+  border: none;
+  color: #555;
+  font-size: 18px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 48px;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.menu-close:hover {
+  color: white;
+  transform: none;
+}
+
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.menu-nav a {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.menu-nav a:hover { color: white; }
+
+/* Updated navbar for hamburger layout */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 28px;
+  background: #080808;
+  border-bottom: 1px solid #1a1a1a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.cart-link:hover { color: white; }
+
+/* Fixed card image — same height, cropped symmetrically */
+.card-img-wrap {
+  overflow: hidden;
+  background: #111;
+  height: 280px;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.4s ease;
+}
