@@ -450,3 +450,48 @@ a:active  { color: white; }
   border-color: white;
   opacity: 1;
 }
+@media (max-width: 600px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .logo {
+    font-size: 16px;
+  }
+
+  .navbar a {
+    margin-left: 12px;
+    font-size: 11px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .products {
+    padding: 40px 20px;
+  }
+
+  .product-page {
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+
+  .product-main-img {
+    width: 100%;
+  }
+
+  .product-gallery {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .thumbnails {
+    flex-direction: row;
+  }
+
+  .thumb {
+    width: 60px;
+    height: 60px;
+  }
+}
