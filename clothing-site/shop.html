@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Long Jorts – Arivon Apparel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <title>Shop – ARIVON APPAREL</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,39 +30,71 @@
     </nav>
   </div>
 
-  <section class="product-page">
-    <div class="product-gallery">
-      <div class="thumbnails">
-        <img src="images/Screenshot 2026-06-06 130025.png" class="thumb active" onclick="switchImage(this)">
-      </div>
-      <img id="main-img" src="images/Screenshot 2026-06-06 130025.png" class="product-main-img">
-    </div>
+  <section class="products">
+    <h2>FEATURED ITEMS</h2>
+    <div class="grid">
 
-    <div class="product-info">
-      <h1 id="product-name">Long Jorts</h1>
-      <p class="product-price">$55</p>
-      <p class="product-desc">Heavyweight streetwear piece made for everyday wear.</p>
+      <a href="hoodie.html">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>WASHED HOODIE</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
+        </div>
+      </a>
 
-      <div class="sizes">
-        <button class="size-btn" onclick="selectSize('S', this)">S</button>
-        <button class="size-btn" onclick="selectSize('M', this)">M</button>
-        <button class="size-btn" onclick="selectSize('L', this)">L</button>
-        <button class="size-btn" onclick="selectSize('XL', this)">XL</button>
-      </div>
+      <a href="affliction-shirt.html">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 153459.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>AFFLICTION SHIRT</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
+        </div>
+      </a>
 
-      <div style="display:flex; gap:10px;">
-        <button id="buyNowStripe" onclick="stripeCheckoutNow()" disabled>BUY NOW</button>
-        <button id="addCartBtn" onclick="addToCart()" disabled>ADD TO CART</button>
-      </div>
+      <a href="distressed-jeans.html">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>DISTRESSED JEANS</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
+        </div>
+      </a>
 
-      <div class="stripe-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Secure checkout powered by Stripe
-      </div>
+      <a href="long-jorts.html">
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="images/Screenshot 2026-06-06 130025.png" class="product-img">
+          </div>
+          <div class="card-info">
+            <h3>LONG JORTS</h3>
+            <p class="card-price">$55</p>
+            <p class="card-sizes">S · M · L · XL</p>
+          </div>
+        </div>
+      </a>
+
     </div>
   </section>
 
+  <footer>
+    <p>© 2026 ARIVON APPAREL</p>
+  </footer>
+
   <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
+
   <div id="cart-panel" class="cart-panel">
     <div class="cart-panel-header">
       <span>YOUR CART</span>
@@ -80,11 +113,6 @@
 
   <script src="script.js"></script>
   <script>
-    function switchImage(thumb) {
-      document.getElementById('main-img').src = thumb.src;
-      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-      thumb.classList.add('active');
-    }
     function openMenu() {
       document.getElementById('menu-panel').classList.add('open');
       document.getElementById('menu-overlay').classList.add('active');
@@ -93,25 +121,29 @@
       document.getElementById('menu-panel').classList.remove('open');
       document.getElementById('menu-overlay').classList.remove('active');
     }
+
     function openCart() {
       renderCartPanel();
       document.getElementById('cart-panel').classList.add('open');
       document.getElementById('cart-overlay').classList.add('active');
     }
+
     function closeCart() {
       document.getElementById('cart-panel').classList.remove('open', 'fullscreen');
       document.getElementById('cart-overlay').classList.remove('active');
       document.getElementById('fullscreen-btn').textContent = '⛶';
     }
+
     function toggleFullscreen() {
       const panel = document.getElementById('cart-panel');
-      const btn = document.getElementById('fullscreen-btn');
-      const isFs = panel.classList.toggle('fullscreen');
+      const btn   = document.getElementById('fullscreen-btn');
+      const isFs  = panel.classList.toggle('fullscreen');
       btn.textContent = isFs ? '⊡' : '⛶';
     }
+
     function renderCartPanel() {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      let items = document.getElementById('cart-panel-items');
+      let cart    = JSON.parse(localStorage.getItem('cart')) || [];
+      let items   = document.getElementById('cart-panel-items');
       let totalEl = document.getElementById('cart-panel-total');
       let countEl = document.getElementById('cart-count');
       items.innerHTML = '';
@@ -141,24 +173,17 @@
       totalEl.textContent = 'Total: $' + total;
       if (countEl) countEl.textContent = cart.length > 0 ? `(${cart.length})` : '';
     }
+
     window.addEventListener('DOMContentLoaded', () => {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart    = JSON.parse(localStorage.getItem('cart')) || [];
       let countEl = document.getElementById('cart-count');
       if (countEl && cart.length > 0) countEl.textContent = `(${cart.length})`;
     });
-    async function stripeCheckoutNow() {
-      if (!selectedSize) return;
-      const name  = document.getElementById('product-name').innerText;
-      const price = parseInt(document.querySelector('.product-price').innerText.replace('$', ''));
-      const res = await fetch('/.netlify/functions/create-checkout', {
-        method: 'POST',
-        body: JSON.stringify({ items: [{ name, price, size: selectedSize }] })
-      });
-      const { url } = await res.json();
-      window.location.href = url;
-    }
+
+    function showCartPopup() { openCart(); }
+
     async function stripeCheckout() {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart     = JSON.parse(localStorage.getItem('cart')) || [];
       let selected = cart.filter(item => item.selected);
       if (selected.length === 0) { alert('No items selected'); return; }
       const res = await fetch('/.netlify/functions/create-checkout', {

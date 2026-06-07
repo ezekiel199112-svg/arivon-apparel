@@ -9,15 +9,25 @@
 <body>
 
   <header class="navbar">
+    <button class="hamburger" onclick="openMenu()">
+      <span></span><span></span><span></span>
+    </button>
     <h2 class="logo">ARIVON APPAREL</h2>
-    <nav>
-      <a href="index.html">← SHOP</a>
-      <a href="#" onclick="openCart(); return false;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        <span id="cart-count" class="cart-count"></span>
-      </a>
-    </nav>
+    <a href="#" onclick="openCart(); return false;" class="cart-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span id="cart-count" class="cart-count"></span>
+    </a>
   </header>
+
+  <div id="menu-overlay" class="menu-overlay" onclick="closeMenu()"></div>
+  <div id="menu-panel" class="menu-panel">
+    <button class="menu-close" onclick="closeMenu()">✕</button>
+    <nav class="menu-nav">
+      <a href="index.html">HOME</a>
+      <a href="shop.html">SHOP</a>
+      <a href="about.html">ABOUT</a>
+    </nav>
+  </div>
 
   <section class="product-page">
 
@@ -55,7 +65,6 @@
   </section>
 
   <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
-
   <div id="cart-panel" class="cart-panel">
     <div class="cart-panel-header">
       <span>YOUR CART</span>
@@ -79,26 +88,30 @@
       document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
       thumb.classList.add('active');
     }
-
+    function openMenu() {
+      document.getElementById('menu-panel').classList.add('open');
+      document.getElementById('menu-overlay').classList.add('active');
+    }
+    function closeMenu() {
+      document.getElementById('menu-panel').classList.remove('open');
+      document.getElementById('menu-overlay').classList.remove('active');
+    }
     function openCart() {
       renderCartPanel();
       document.getElementById('cart-panel').classList.add('open');
       document.getElementById('cart-overlay').classList.add('active');
     }
-
     function closeCart() {
       document.getElementById('cart-panel').classList.remove('open', 'fullscreen');
       document.getElementById('cart-overlay').classList.remove('active');
       document.getElementById('fullscreen-btn').textContent = '⛶';
     }
-
     function toggleFullscreen() {
       const panel = document.getElementById('cart-panel');
       const btn = document.getElementById('fullscreen-btn');
       const isFs = panel.classList.toggle('fullscreen');
       btn.textContent = isFs ? '⊡' : '⛶';
     }
-
     function renderCartPanel() {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       let items = document.getElementById('cart-panel-items');
@@ -131,13 +144,11 @@
       totalEl.textContent = 'Total: $' + total;
       if (countEl) countEl.textContent = cart.length > 0 ? `(${cart.length})` : '';
     }
-
     window.addEventListener('DOMContentLoaded', () => {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       let countEl = document.getElementById('cart-count');
       if (countEl && cart.length > 0) countEl.textContent = `(${cart.length})`;
     });
-
     async function stripeCheckoutNow() {
       if (!selectedSize) return;
       const name  = document.getElementById('product-name').innerText;
@@ -149,7 +160,6 @@
       const { url } = await res.json();
       window.location.href = url;
     }
-
     async function stripeCheckout() {
       let cart = JSON.parse(localStorage.getItem('cart')) || [];
       let selected = cart.filter(item => item.selected);

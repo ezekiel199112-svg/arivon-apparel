@@ -75,7 +75,7 @@ nav {
    HERO
    ============================================ */
 .hero {
-  height: 88vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -970,7 +970,7 @@ footer {
 .card-img-wrap {
   overflow: hidden;
   background: #111;
-  height: 280px;
+  aspect-ratio: 1 / 1;
 }
 
 .product-img {
@@ -980,4 +980,44 @@ footer {
   object-position: center top;
   display: block;
   transition: transform 0.4s ease;
+}
+.hero-email-form {
+  display: flex;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.hero-email-form .email-input {
+  width: 260px;
+  padding: 12px 20px;
+  background: transparent;
+  border: 1px solid #444;
+  border-right: none;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  outline: none;
+}
+
+.hero-email-form .email-input::placeholder {
+  color: #444;
+}
+
+.hero-email-form .email-btn {
+  padding: 12px 20px;
+  background: transparent;
+  color: white;
+  border: 1px solid #444;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.hero-email-form .email-btn:hover {
+  border-color: white;
+  color: white;
+  transform: none;
 }
