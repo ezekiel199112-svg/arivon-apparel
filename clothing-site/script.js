@@ -190,3 +190,21 @@ function buyNowCart() {
     "\n\n(Stripe will be added next)"
   );
 }
+function openImageFullscreen(imgSrc) {
+  document.getElementById('fullscreenImg').src = imgSrc;
+  document.getElementById('imageFullscreen').classList.add('active');
+}
+
+function closeImageFullscreen() {
+  document.getElementById('imageFullscreen').classList.remove('active');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.product-main-img').forEach(img => {
+    img.style.cursor = 'zoom-in';
+
+    img.addEventListener('click', () => {
+      openImageFullscreen(img.src);
+    });
+  });
+});
