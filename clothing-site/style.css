@@ -31,14 +31,15 @@ button:hover {
    ============================================ */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 18px 48px;
+  padding: 20px 28px;
   background: #080808;
   border-bottom: 1px solid #1a1a1a;
   position: sticky;
   top: 0;
   z-index: 100;
+  gap: 16px;
+  overflow: visible;
 }
 
 .logo {
@@ -69,6 +70,63 @@ nav {
   font-size: 10px;
   opacity: 0.7;
   margin-left: 2px;
+}
+
+.cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #aaa;
+  transition: color 0.2s;
+}
+
+.cart-link:hover { color: white; }
+
+/* ============================================
+   TICKER
+   ============================================ */
+.ticker-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: white;
+}
+
+.ticker span {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: black;
+  flex-shrink: 0;
+}
+
+.ticker {
+  display: flex;
+  gap: 120px;
+  white-space: nowrap;
+  animation: ticker 35s linear infinite;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ============================================
+   NAV LOGO
+   ============================================ */
+.nav-logo-link {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 101;
+  pointer-events: auto;
+}
+
+.nav-logo {
+  height: 70px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 /* ============================================
@@ -133,8 +191,45 @@ nav {
   font-weight: 600;
 }
 
-.hero button:hover {
-  background: #ddd;
+.hero button:hover { background: #ddd; }
+
+.hero-email-form {
+  display: flex;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.hero-email-form .email-input {
+  width: 260px;
+  padding: 12px 20px;
+  background: transparent;
+  border: 1px solid #444;
+  border-right: none;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  outline: none;
+}
+
+.hero-email-form .email-input::placeholder { color: #444; }
+
+.hero-email-form .email-btn {
+  padding: 12px 20px;
+  background: transparent;
+  color: white;
+  border: 1px solid #444;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.hero-email-form .email-btn:hover {
+  border-color: white;
+  color: white;
+  transform: none;
 }
 
 /* ============================================
@@ -174,25 +269,25 @@ nav {
   cursor: pointer;
 }
 
-.card:hover {
-  border-color: #333;
-}
+.card:hover { border-color: #333; }
 
-.card:hover .product-img {
-  transform: scale(1.03);
-}
+.card:hover .product-img { transform: scale(1.03); }
 
 .card-img-wrap {
   overflow: hidden;
   background: white;
   aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
+  transition: transform 0.4s ease;
 }
 
 .card-info {
@@ -278,6 +373,7 @@ footer {
   border-radius: 4px;
   object-fit: contain;
   background: #0e0e0e;
+  cursor: pointer;
 }
 
 .product-info {
@@ -315,6 +411,7 @@ footer {
   display: flex;
   gap: 8px;
   margin-bottom: 24px;
+  flex-wrap: wrap;
 }
 
 .size-btn {
@@ -329,9 +426,7 @@ footer {
   transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 
-.size-btn:hover {
-  border-color: #666;
-}
+.size-btn:hover { border-color: #666; }
 
 .size-btn.active {
   background: white;
@@ -370,11 +465,8 @@ footer {
   opacity: 1;
 }
 
-#addCartBtn:not([disabled]):hover {
-  border-color: white;
-}
+#addCartBtn:not([disabled]):hover { border-color: white; }
 
-/* Stripe badge */
 .stripe-badge {
   margin-top: 16px;
   display: flex;
@@ -385,9 +477,7 @@ footer {
   letter-spacing: 1px;
 }
 
-.stripe-badge svg {
-  opacity: 0.4;
-}
+.stripe-badge svg { opacity: 0.4; }
 
 /* ============================================
    CART PANEL
@@ -655,14 +745,6 @@ footer {
   font-weight: 600;
 }
 
-.cart-empty {
-  text-align: center;
-  color: #444;
-  margin-top: 80px;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-
 /* ============================================
    ABOUT PAGE
    ============================================ */
@@ -766,9 +848,7 @@ footer {
   color: #444;
 }
 
-.about-socials {
-  padding: 0 60px 100px;
-}
+.about-socials { padding: 0 60px 100px; }
 
 .about-socials-label {
   font-size: 10px;
@@ -777,10 +857,7 @@ footer {
   margin-bottom: 24px;
 }
 
-.social-links {
-  display: flex;
-  gap: 12px;
-}
+.social-links { display: flex; gap: 12px; }
 
 .social-link {
   display: flex;
@@ -795,57 +872,9 @@ footer {
   transition: border-color 0.2s, color 0.2s;
 }
 
-.social-link:hover {
-  border-color: #444;
-  color: white;
-}
+.social-link:hover { border-color: #444; color: white; }
 
-.social-icon {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
-/* ============================================
-   MOBILE
-   ============================================ */
-@media (max-width: 600px) {
-  .navbar {
-    padding: 14px 20px;
-  }
-
-  .logo { font-size: 12px; }
-
-  nav { gap: 16px; }
-
-  .navbar a { font-size: 10px; }
-
-  .hero h1 { font-size: 36px; }
-
-  .products { padding: 40px 20px; }
-
-  .product-page {
-    flex-direction: column;
-    padding: 30px 20px;
-  }
-
-  .product-main-img { width: 100%; }
-
-  .product-gallery {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .thumbnails { flex-direction: row; }
-
-  .thumb { width: 56px; height: 56px; }
-
-  .about-hero { padding: 60px 24px 40px; }
-  .about-title { font-size: 40px; }
-  .about-mission { padding: 40px 24px; }
-  .about-stats { padding: 0 24px; }
-  .about-socials { padding: 0 24px 60px; }
-}
+.social-icon { width: 16px; height: 16px; fill: currentColor; }
 
 /* ============================================
    HAMBURGER BUTTON
@@ -858,6 +887,7 @@ footer {
   flex-direction: column;
   gap: 5px;
   padding: 4px;
+  flex-shrink: 0;
 }
 
 .hamburger span {
@@ -905,9 +935,7 @@ footer {
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.menu-panel.open {
-  transform: translateX(0);
-}
+.menu-panel.open { transform: translateX(0); }
 
 .menu-close {
   background: transparent;
@@ -921,10 +949,7 @@ footer {
   transition: color 0.2s;
 }
 
-.menu-close:hover {
-  color: white;
-  transform: none;
-}
+.menu-close:hover { color: white; transform: none; }
 
 .menu-nav {
   display: flex;
@@ -942,29 +967,6 @@ footer {
 }
 
 .menu-nav a:hover { color: white; }
-
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 28px;
-  background: #080808;
-  border-bottom: 1px solid #1a1a1a;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.cart-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: #aaa;
-  transition: color 0.2s;
-}
-
-.cart-link:hover { color: white; }
 
 /* ============================================
    EMAIL SIGNUP
@@ -1019,13 +1021,8 @@ footer {
   transition: border-color 0.2s;
 }
 
-.email-input::placeholder {
-  color: #444;
-}
-
-.email-input:focus {
-  border-color: #666;
-}
+.email-input::placeholder { color: #444; }
+.email-input:focus { border-color: #666; }
 
 .email-btn {
   padding: 14px 24px;
@@ -1040,32 +1037,12 @@ footer {
   transition: background 0.2s;
 }
 
-.email-btn:hover {
-  background: #ddd;
-  transform: none;
-}
-
-@media (max-width: 600px) {
-  .email-section {
-    padding: 60px 24px;
-  }
-
-  .email-form {
-    flex-direction: column;
-  }
-
-  .email-input {
-    border-right: 1px solid #333;
-    border-bottom: none;
-  }
-}
+.email-btn:hover { background: #ddd; transform: none; }
 
 /* ============================================
    SIZE GUIDE
    ============================================ */
-.size-guide-wrap {
-  margin-top: 20px;
-}
+.size-guide-wrap { margin-top: 20px; }
 
 .size-guide-toggle {
   background: transparent;
@@ -1081,11 +1058,7 @@ footer {
   text-align: left;
 }
 
-.size-guide-toggle:hover {
-  border-color: #666;
-  color: white;
-  transform: none;
-}
+.size-guide-toggle:hover { border-color: #666; color: white; transform: none; }
 
 .size-guide-table {
   border: 1px solid #1a1a1a;
@@ -1117,9 +1090,7 @@ footer {
   white-space: nowrap;
 }
 
-.size-guide-table tr:last-child td {
-  border-bottom: none;
-}
+.size-guide-table tr:last-child td { border-bottom: none; }
 
 .size-guide-note {
   font-size: 10px;
@@ -1142,14 +1113,12 @@ footer {
   align-items: center;
 }
 
-.image-fullscreen.active {
-  display: flex;
-}
+.image-fullscreen.active { display: flex; }
 
 .image-fullscreen img {
   max-width: 90vw;
   max-height: 90vh;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .image-close {
@@ -1169,27 +1138,114 @@ footer {
   justify-content: center;
 }
 
-.image-close:hover {
-  border-color: white;
-  transform: none;
+.image-close:hover { border-color: white; transform: none; }
+
+/* ============================================
+   MOBILE
+   ============================================ */
+@media (max-width: 600px) {
+  .navbar { padding: 14px 20px; }
+  .logo { font-size: 12px; }
+  nav { gap: 16px; }
+  .navbar a { font-size: 10px; }
+  .hero h1 { font-size: 36px; }
+  .products { padding: 40px 20px; }
+  .product-page { flex-direction: column; padding: 30px 20px; }
+  .product-main-img { width: 100%; }
+  .product-gallery { flex-direction: column; width: 100%; }
+  .thumbnails { flex-direction: row; }
+  .thumb { width: 56px; height: 56px; }
+  .about-hero { padding: 60px 24px 40px; }
+  .about-title { font-size: 40px; }
+  .about-mission { padding: 40px 24px; }
+  .about-stats { padding: 0 24px; }
+  .about-socials { padding: 0 24px 60px; }
+  .email-section { padding: 60px 24px; }
+  .email-form { flex-direction: column; }
+  .email-input { border-right: 1px solid #333; border-bottom: none; }
+  .nav-logo { height: 36px; }
 }
-.nav-logo {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-}
-.card-img-wrap {
-  overflow: hidden;
-  background: white;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.related-products{
+    max-width:1200px;
+    margin:80px auto;
+    padding:0 20px;
 }
 
-.product-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+.related-products h2{
+    text-align:center;
+    margin-bottom:30px;
+    letter-spacing:2px;
+}
+
+.related-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.related-card{
+    text-decoration:none;
+    color:white;
+}
+
+.related-card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.related-card p{
+    margin:10px 0 5px;
+}
+
+.related-card span{
+    opacity:.8;
+}
+
+@media (max-width:768px){
+    .related-grid{
+        grid-template-columns:1fr;
+    }
+}
+.cart-product-link{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  text-decoration:none;
+  color:inherit;
+  flex:1;
+}
+
+.cart-product-img{
+  width:75px;
+  height:75px;
+  object-fit:cover;
+  border-radius:8px;
+  flex-shrink:0;
+}
+
+.cart-product-link:hover .item-name{
+  text-decoration:underline;
+}
+.product-qty{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+
+.product-qty button{
+  width:36px;
+  height:36px;
+  background:none;
+  border:1px solid #444;
+  color:white;
+  cursor:pointer;
+}
+
+.product-qty span{
+  min-width:24px;
+  text-align:center;
 }
