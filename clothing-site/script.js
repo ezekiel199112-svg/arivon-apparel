@@ -17,7 +17,17 @@ function selectSize(size, btn) {
     document.getElementById("buyNowStripe").disabled = false;
   }
 }
+let selectedQty = 1;
 
+function changeQty(amount) {
+  selectedQty += amount;
+
+  if (selectedQty < 1) {
+    selectedQty = 1;
+  }
+
+  document.getElementById("qty-display").textContent = selectedQty;
+}
 // =========================
 // ADD TO CART
 // =========================
@@ -32,15 +42,27 @@ function addToCart() {
   const name  = nameEl  ? nameEl.innerText  : "Product";
   const price = priceEl ? parseInt(priceEl.innerText.replace("$", "")) : 0;
 
-  const product = {
+const existingItem = cart.find(
+  item =>
+    item.name === name &&
+    item.size === selectedSize
+);
+
+if (existingItem) {
+  existingItem.quantity =
+    (existingItem.quantity || 1) + selectedQty;
+} else {
+  cart.push({
     id: Date.now(),
     name: name,
     price: price,
+    quantity: selectedQty,
     size: selectedSize,
-    selected: true
-  };
-
-  cart.push(product);
+    selected: true,
+    image: document.getElementById("main-img")?.src || "",
+    page: window.location.pathname.split("/").pop()
+  });
+}
   localStorage.setItem("cart", JSON.stringify(cart));
 
   showCartPopup();
@@ -81,14 +103,17 @@ function showCartPopup() {
   }
 
   let cart  = JSON.parse(localStorage.getItem("cart")) || [];
-  let popup = document.getElementById("cartPopup");
-  if (!popup) return;
+let popup = document.getElementById("cartPopup");
+if (!popup) return;
 
-  let total = 0;
-  popup.innerHTML = "<h3>Cart</h3>";
+let total = 0;
+
+popup.innerHTML = "<h3>Cart</h3>";
 
   cart.forEach(item => {
-    if (item.selected) total += item.price;
+    if (item.selected) {
+  total += item.price * (item.quantity || 1);
+}
     popup.innerHTML += `
       <div style="margin-bottom:10px;">
         <p>${item.name} - Size ${item.size} - $${item.price}</p>
@@ -137,36 +162,74 @@ function buySelected() {
 // CART PAGE RENDER
 // =========================
 function renderCartPage() {
+let subtotal = 0;
+let itemCount = 0;
   let cart      = JSON.parse(localStorage.getItem("cart")) || [];
   let container = document.getElementById("cartContainer");
   let totalEl   = document.getElementById("cartTotal");
 
   if (!container || !totalEl) return;
 
-  let total = 0;
   container.innerHTML = "";
 
-  cart.forEach(item => {
-    if (item.selected) total += item.price;
+cart.forEach(item => {
+  if (item.selected) {
+    subtotal += item.price * (item.quantity || 1);
+    itemCount += item.quantity || 1;
+  }
 
-    container.innerHTML += `
+  container.innerHTML += `
       <div class="cart-item">
         <div
           class="select-btn ${item.selected ? "selected" : ""}"
           onclick="toggleSelect(${item.id}); renderCartPage();"
         ></div>
-        <div class="item-info">
-          <p class="item-name"><strong>${item.name}, ${item.size}</strong></p>
-        </div>
+        <a href="${item.page || '#'}" class="cart-product-link">
+  <img
+    src="${item.image || ''}"
+    class="cart-product-img"
+    alt="${item.name}"
+  >
+
+<div class="item-info">
+  <p class="item-name">
+    <strong>${item.name}</strong>
+  </p>
+
+<p style="margin:0;font-size:11px;color:#555;letter-spacing:1px;">
+  Size ${item.size} · Qty ${item.quantity || 1}
+</p>
+
+  <div class="qty-controls">
+    <button onclick="event.preventDefault(); event.stopPropagation(); decreaseQty(${item.id}); renderCartPage();">−</button>
+
+<span>${item.quantity || 1}</span>
+
+<button onclick="event.preventDefault(); event.stopPropagation(); increaseQty(${item.id}); renderCartPage();">+</button>
+  </div>
+</div>
+</a>
         <div class="right-side">
-          <span class="price">$${item.price}</span>
-          <span class="remove-x" onclick="removeFromCart(${item.id}); renderCartPage();">✕</span>
-        </div>
+  <span class="price">
+  $${item.price * (item.quantity || 1)}
+</span>
+
+  <span class="remove-x"
+        onclick="removeFromCart(${item.id}); renderCartPage();">
+    ✕
+  </span>
+</div>
       </div>
     `;
   });
 
-  totalEl.innerText = "Total: $" + total;
+const shipping = subtotal >= 150 ? 0 : itemCount * 2;
+const total = subtotal + shipping;
+  totalEl.innerHTML = `
+  Subtotal: $${subtotal}<br>
+  Shipping: ${shipping === 0 ? "FREE" : "$" + shipping}<br>
+  <strong>Total: $${total}</strong>
+`;
 }
 
 // =========================
@@ -208,3 +271,28 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+function increaseQty(id) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart = cart.map(item => {
+    if (item.id === id) {
+      item.quantity++;
+    }
+    return item;
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function decreaseQty(id) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  cart = cart.map(item => {
+    if (item.id === id && item.quantity > 1) {
+      item.quantity--;
+    }
+    return item;
+  });
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
