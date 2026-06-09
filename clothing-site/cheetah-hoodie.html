@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
   <meta charset="UTF-8">
   <title>Graphic Cheetah Hoodie – Arivon Apparel</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
@@ -16,11 +18,11 @@
   <div class="ticker-wrap">
     <div class="ticker">
       <span>FREE SHIPPING ON ORDERS ABOVE $150</span>
-      <span>MADE TO ORDER — SHIPS IN 7–10 DAYS</span>
+      <span>MADE TO ORDER — SHIPS IN 7–14 DAYS</span>
       <span>FREE SHIPPING ON ORDERS ABOVE $150</span>
-      <span>MADE TO ORDER — SHIPS IN 7–10 DAYS</span>
-            <span>FREE SHIPPING ON ORDERS ABOVE $150</span>
-      <span>MADE TO ORDER — SHIPS IN 7–10 DAYS</span>
+      <span>MADE TO ORDER — SHIPS IN 7–14 DAYS</span>
+      <span>FREE SHIPPING ON ORDERS ABOVE $150</span>
+      <span>MADE TO ORDER — SHIPS IN 7–14 DAYS</span>
     </div>
   </div>
 
@@ -46,18 +48,25 @@
 
   <section class="product-page">
     <div class="product-gallery">
-      <div class="thumbnails">
-        <img src="images/frontcheetahhoodie.png" class="thumb active" onclick="switchImage(this)">
-        <img src="images/backcheetahhoodie.png" class="thumb" onclick="switchImage(this)">
-      </div>
-      <img id="main-img" src="images/frontcheetahhoodie.png" class="product-main-img" onclick="openImageFullscreen()">
-    </div>
+  <div class="thumbnails">
+  <img src="images/frontcheetahhoodie.png" class="thumb active" onclick="switchImage(this)">
+  <img src="images/backcheetahhoodie.png" class="thumb" onclick="switchImage(this)">
+</div>
+  <img id="main-img"
+     src="images/frontcheetahhoodie.png"
+     class="product-main-img"
+     onclick="openImageFullscreen()">
+</div>
 
     <div class="product-info">
       <h1 id="product-name">Graphic Cheetah Hoodie</h1>
-      <p class="product-price">$54</p>
-      <p class="product-desc">430 GSM heavyweight fleece built for people who move different. Boxy oversized fit with a bold cheetah graphic on the back that speaks before you do. Made from a premium 56% cotton, 44% polyester blend that holds its shape and gets better with every wear. This is not a basic hoodie.</p>
+      <p class="product-price">$59</p>
 
+<div class="product-divider"></div>
+
+<p class="product-desc">
+430 GSM heavyweight fleece built for people who move different. Boxy oversized fit with a bold cheetah graphic on the back that speaks before you do. Made from a premium 56% cotton, 44% polyester blend that holds its shape and gets better with every wear. This is not a basic hoodie.
+      </p>
       <div class="sizes">
         <button class="size-btn" onclick="selectSize('S', this)">S</button>
         <button class="size-btn" onclick="selectSize('M', this)">M</button>
@@ -75,10 +84,13 @@
         <button id="addCartBtn" onclick="addToCart()" disabled>ADD TO CART</button>
       </div>
 
-      <div class="stripe-badge">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Secure checkout powered by Stripe
-      </div>
+<div class="stripe-badge">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <rect x="1" y="4" width="22" height="16" rx="2"/>
+    <line x1="1" y1="10" x2="23" y2="10"/>
+  </svg>
+  Secure checkout powered by Stripe
+</div>
 
       <div class="size-guide-wrap">
         <button class="size-guide-toggle" onclick="toggleSizeGuide()">SIZE GUIDE ↓</button>
@@ -126,19 +138,19 @@
     <a href="cheetah-tee.html" class="related-card">
       <img src="images/frontcheetahtee.png" alt="">
       <p>Boxy Graphic Cheetah Tee</p>
-      <span>$27</span>
+      <span>$29</span>
     </a>
     
     <a href="cheetah-shorts.html" class="related-card">
       <img src="images/frontcheetahshorts.png" alt="">
       <p>Baggy Double-Waisted Cheetah Print Shorts</p>
-      <span>$47</span>
+      <span>$52</span>
     </a>
 
     <a href="cheetah-sweats.html" class="related-card">
       <img src="images/frontcheetahsweats.png" alt="">
       <p>Baggy Double-Waisted Cheetah Print Sweats</p>
-      <span>$54</span>
+      <span>$59</span>
     </a>
 
   </div>
