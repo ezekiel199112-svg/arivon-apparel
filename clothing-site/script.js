@@ -196,7 +196,7 @@ cart.forEach(item => {
     <strong>${item.name}</strong>
   </p>
 
-<p style="margin:0;font-size:11px;color:#555;letter-spacing:1px;">
+<p style="margin:0;font-size:14px;color:#777;letter-spacing:1px;">
   Size ${item.size} · Qty ${item.quantity || 1}
 </p>
 
@@ -223,7 +223,7 @@ cart.forEach(item => {
     `;
   });
 
-const shipping = subtotal >= 150 ? 0 : itemCount * 2;
+const shipping = subtotal >= 150 ? 0 : 6;
 const total = subtotal + shipping;
   totalEl.innerHTML = `
   Subtotal: $${subtotal}<br>
