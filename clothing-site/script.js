@@ -223,13 +223,18 @@ cart.forEach(item => {
     `;
   });
 
-const shipping = subtotal >= 150 ? 0 : 6;
+const shipping = subtotal >= 150 ? 0 : (subtotal === 0 ? 0 : 6);
 const total = subtotal + shipping;
+
+if (subtotal === 0) {
+  totalEl.innerHTML = `<strong>Total: $0</strong>`;
+} else {
   totalEl.innerHTML = `
-  Subtotal: $${subtotal}<br>
-  Shipping: ${shipping === 0 ? "FREE" : "$" + shipping}<br>
-  <strong>Total: $${total}</strong>
-`;
+    Subtotal: $${subtotal}<br>
+    Shipping: ${shipping === 0 ? "FREE" : "$" + shipping}<br>
+    <strong>Total: $${total}</strong>
+  `;
+}
 }
 
 // =========================
